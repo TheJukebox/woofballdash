@@ -8,22 +8,26 @@ if ((login = sessionStorage.getItem('loggedin')) == 'true'){
     username = localStorage.getItem('username');
     token = localStorage.getItem('token');
 } else {
-    logout();
+    logouterer();
 }
 
 function logout(){
     $('body').addClass('fadeout');
     setTimeout(function(){
-        sessionStorage.removeItem('loggedin');
-        sessionStorage.removeItem('username');
-        sessionStorage.removeItem('token');
-
-        localStorage.removeItem('loggedin');
-        localStorage.removeItem('username');
-        localStorage.removeItem('token');
-
-        window.location.replace('login.html');
+        logouterer();
     }, 2000);
+}
+
+function logouterer(){
+    sessionStorage.removeItem('loggedin');
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('token');
+
+    localStorage.removeItem('loggedin');
+    localStorage.removeItem('username');
+    localStorage.removeItem('token');
+
+    window.location.replace('login.html');
 }
 
 function displayAudits(){
