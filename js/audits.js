@@ -4,9 +4,11 @@ var token, login, username;
 if ((login = sessionStorage.getItem('loggedin')) == 'true'){
     username = sessionStorage.getItem('username');
     token = sessionStorage.getItem('token');
+    $('body').addClass('fadein');
 } else if ((login = localStorage.getItem('loggedin')) == 'true'){
     username = localStorage.getItem('username');
     token = localStorage.getItem('token');
+    $('body').addClass('fadein');
 } else {
     logouterer();
 }

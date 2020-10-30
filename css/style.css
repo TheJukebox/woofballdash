@@ -26,9 +26,11 @@ html {
 
 body {
     background-color: transparent;
+    opacity: 0;
+}
+.fadein {
     animation: fadein 1.5s ease-in-out both;
 }
-
 .fadeout {
     animation: fadeout 1.5s ease-in-out both;
 }
