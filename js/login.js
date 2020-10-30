@@ -44,7 +44,7 @@ function tempLogin(username, password, remember){
         $('#incorrect-text').removeClass('no-height');
         setTimeout(
             function(){$('.signin').removeClass('shake');
-        }, 1500);
+        }, 1000);
     } else {
         $('.signin').addClass('slide-out');
         setTimeout(function(){
