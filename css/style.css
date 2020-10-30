@@ -28,11 +28,20 @@ body {
     background-color: transparent;
     opacity: 0;
 }
+
 .fadein {
-    animation: fadein 1.5s ease-in-out both;
+    animation: fadein 1s ease-in-out both;
 }
 .fadeout {
-    animation: fadeout 1.5s ease-in-out both;
+    animation: fadeout 1s ease-in-out both;
+}
+
+.slide-in-nav {
+    animation: slide-in 1s both;
+}
+
+.slide-out-nav {
+    animation: slide-out 1.5s both;
 }
 
 @keyframes fadein {
@@ -43,5 +52,27 @@ body {
 @keyframes fadeout {
     from { opacity: 1; }
     to   { opacity: 0; }
+}
+
+@keyframes slide-in {
+    0% {
+      transform: translateY(-72px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+}
+
+@keyframes slide-out {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-72px);
+      opacity: 0;
+    }
 }
 

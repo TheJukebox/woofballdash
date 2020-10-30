@@ -14,10 +14,12 @@ function login(username, password, remember){
                 //uses localstorage to remember the login, sessionstorage if not
                 if (remember){
                     localStorage.setItem('loggedin', true);
+                    localStorage.setItem('first-login', true);
                     localStorage.setItem('username', username);
                     localStorage.setItem('token', 'token');
                 } else {
                     sessionStorage.setItem('loggedin', true);
+                    sessionStorage.setItem('first-login', true);
                     sessionStorage.setItem('username', username);
                     sessionStorage.setItem('token', 'token');
                 }
@@ -49,10 +51,12 @@ function tempLogin(username, password, remember){
             if (remember){
                 localStorage.setItem('loggedin', true);
                 localStorage.setItem('username', username);
+                localStorage.setItem('first-login', true);
                 localStorage.setItem('token', 'token');
             } else {
                 sessionStorage.setItem('loggedin', true);
                 sessionStorage.setItem('username', username);
+                sessionStorage.setItem('first-login', true);
                 sessionStorage.setItem('token', 'token');
             }
             window.location.replace('index.html');
