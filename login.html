@@ -21,7 +21,66 @@
             background-color: #f5f5f5;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             border-radius: 5px;
+            transition-duration: 1.5s;
           }
+
+          .slide-in {
+            animation: slide-in 1.5s both;
+          }
+
+          .slide-out {
+            animation: slide-out 2s both;
+          }
+
+          .shake {
+              animation: shake 1s ease-in-out both;
+          }
+
+          @keyframes slide-in {
+            0% {
+              transform: translateY(-1000px);
+              opacity: 0;
+            }
+            100% {
+              transform: translateY(0);
+              opacity: 1;
+            }
+          }
+
+          @keyframes slide-out {
+            0% {
+              transform: translateY(0);
+              opacity: 1;
+            }
+            100% {
+              transform: translateY(-1000px);
+              opacity: 0;
+            }
+          }
+
+          @keyframes shake {
+              0%,
+              100% {
+                transform: translateX(0%);
+                transform-origin: 50% 50%;
+              }
+              15% {
+                transform: translateX(-30px) rotate(-6deg);
+              }
+              30% {
+                transform: translateX(15px) rotate(6deg);
+              }
+              45% {
+                transform: translateX(-15px) rotate(-3.6deg);
+              }
+              60% {
+                transform: translateX(9px) rotate(2.4deg);
+              }
+              75% {
+                transform: translateX(-6px) rotate(-1.2deg);
+              }
+          }
+
           .signin .checkbox {
             font-weight: 400;
           }
@@ -45,12 +104,17 @@
             border-top-left-radius: 0;
             border-top-right-radius: 0;
           }
+
+          .no-height{
+            height: 0px;
+          }
         </style>
     </head>
     <body>
-      <div class="signin">
+      <div class="signin slide-in">
         <img src="icons/feather/log-in.svg" width="48">
         <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+        <p id="incorrect-text" class="text-danger d-none">Incorrect username or password.</p>
         <input type="text" id="username" class="form-control" placeholder="Username" required autofocus>
         <input type="password" id="password" class="form-control" placeholder="Password" required>
         <div class="checkbox mb-3">
@@ -58,7 +122,7 @@
             <input type="checkbox" id="remember"> Remember me
           </label>
         </div>
-        <button onclick="tempLogin($('#username').val(), $('#password').val(), $('#remember').is(':checked'));" class="btn btn-lg btn-primary btn-block">Sign in</button>
+        <button id="login-btn" onclick="tempLogin($('#username').val(), $('#password').val(), $('#remember').is(':checked'));" class="btn btn-lg btn-primary btn-block">Sign in</button>
       </div>
       
       <script src="js/login.js"></script>

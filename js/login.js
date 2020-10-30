@@ -34,16 +34,42 @@ function login(username, password, remember){
 
 //delete this when API implemented
 function tempLogin(username, password, remember){
-    console.log(remember);
-    if (remember){
-        localStorage.setItem('loggedin', true);
-        localStorage.setItem('username', username);
-        localStorage.setItem('token', 'token');
+    if (username == 'wrong' || username == ''){
+        $('.signin').removeClass('slide-in');
+        $('.signin').addClass('shake');
+        $('#username').addClass('is-invalid');
+        $('#password').addClass('is-invalid');
+        $('#incorrect-text').removeClass('no-height');
+        setTimeout(
+            function(){$('.signin').removeClass('shake');
+        }, 1500);
     } else {
-        sessionStorage.setItem('loggedin', true);
-        sessionStorage.setItem('username', username);
-        sessionStorage.setItem('token', 'token');
+        $('.signin').addClass('slide-out');
+        setTimeout(function(){
+            if (remember){
+                localStorage.setItem('loggedin', true);
+                localStorage.setItem('username', username);
+                localStorage.setItem('token', 'token');
+            } else {
+                sessionStorage.setItem('loggedin', true);
+                sessionStorage.setItem('username', username);
+                sessionStorage.setItem('token', 'token');
+            }
+            window.location.replace('index.html');
+        }, 2000);
     }
-    
-    window.location.replace('index.html');
 }
+
+$('#username, #password').on('input', function() { 
+    $('#username').removeClass('is-invalid');
+    $('#password').removeClass('is-invalid');
+    $('#incorrect-text').addClass('no-height');
+});
+
+$('#username, #password').keypress(function(event){
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	if(keycode == '13'){
+        console.log('enter');
+		$('#login-btn').click();
+	}
+});

@@ -20,6 +20,26 @@
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
-body {
+html {
     background-color: #05a;
 }
+
+body {
+    background-color: transparent;
+    animation: fadein 1.5s ease-in-out both;
+}
+
+.fadeout {
+    animation: fadeout 1.5s ease-in-out both;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
