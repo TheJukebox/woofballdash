@@ -94,3 +94,7 @@ body {
 .btn-outline-primary:hover .buttonIMG{
     filter: invert(1);
 }
+
+.noselect {
+    user-select: none;
+}

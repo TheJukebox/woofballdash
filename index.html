@@ -10,7 +10,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <span class="navbar-brand">Woof!</span>
+            <span class="navbar-brand noselect">Woof!</span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -18,7 +18,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="javascript:;" onclick="clickyFade('index.html')">Audits<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="javascript:;" onclick="clickyFade('index.html')">Audits</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="javascript:;" onclick="clickyFade('questions.html')">Questions</a>
@@ -33,7 +33,7 @@
             </div>
         </nav>
 
-          <br class="navBR">
+          <br class="navBR noselect">
 
         <div class="container main">
             <div class="card">
@@ -42,25 +42,25 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-8">
-                                <label for="auditsearch">Search audits:</label>
+                                <label for="auditsearch" class="noselect">Search audits:</label>
                                 <input class="form-control" type="search" id="auditsearch" placeholder="Search">
                             </div>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="startdate">Start date:</label>
+                                <label for="startdate" class="noselect">Start date:</label>
                                 <input class="form-control" type="date" id="startdate">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="enddate">End date:</label>
+                                <label for="enddate" class="noselect">End date:</label>
                                 <input class="form-control" type="date" id="enddate">
                             </div>
                         </div>
             
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="auditscore">Score:</label>
+                                <label for="auditscore" class="noselect">Score:</label>
                                 <select id="auditscore" class="form-control">
                                     <option selected>Select a score</option>
                                     <option>A</option>
@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="audittype">Type:</label>
+                                <label for="audittype" class="noselect">Type:</label>
                                 <select id="audittype" class="form-control">
                                     <option selected>Select a type</option>
                                     <option>Segment</option>
@@ -83,7 +83,7 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-8">
+                            <div class="form-group col-md-8 noselect">
                                 <button class="btn btn-outline-success" type="submit">Search</button> 
                                 <button class="btn btn-outline-danger" type="reset">Reset</button> 
                             </div>
@@ -97,7 +97,7 @@
         <div id="tablecontainer" class="container main">
             <div id="tablecard" class="card">
                 <div class="card-body">
-                    <p id="resultNo" class="float-left">123 results</p>
+                    <p id="resultNo" class="float-left noselect">123 results</p>
                     <button class="btn btn-outline-primary float-right" type="submit">Download all</button>
                     <table id="audit-table" class="table" style="margin-bottom: 0;">
                         <thead>
