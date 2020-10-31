@@ -91,7 +91,15 @@ body {
     }
 }
 
+.btn-outline-primary .buttonIMG{
+    filter: invert(34%) sepia(64%) saturate(5372%) hue-rotate(202deg) brightness(107%) contrast(102%);
+}
+
 .btn-outline-primary:hover .buttonIMG{
+    filter: invert(1);
+}
+
+.btn-outline-primary:active .buttonIMG{
     filter: invert(1);
 }
 
