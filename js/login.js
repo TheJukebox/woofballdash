@@ -1,4 +1,4 @@
-let loginURL = '';
+let loginURL = 'https://z5vplyleb9.execute-api.ap-southeast-2.amazonaws.com/release/authUser';
 let token = '';
 
 if (sessionStorage.getItem('loggedin') == 'true'){
@@ -8,7 +8,7 @@ if (sessionStorage.getItem('loggedin') == 'true'){
 }
 
 function login(username, password, remember){
-    $.post(loginURL, {username: username, password: password})
+    $.post(loginURL, {'username': username, 'password': password})
         .done(function(data) {
             if(data.success){
                 //uses localstorage to remember the login, sessionstorage if not
@@ -73,7 +73,6 @@ $('#username, #password').on('input', function() {
 $('#username, #password').keypress(function(event){
 	var keycode = (event.keyCode ? event.keyCode : event.which);
 	if(keycode == '13'){
-        console.log('enter');
 		$('#login-btn').click();
 	}
 });
