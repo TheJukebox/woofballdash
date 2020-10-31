@@ -90,3 +90,7 @@ body {
         display: none;
     }
 }
+
+.btn-outline-primary:hover .buttonIMG{
+    filter: invert(1);
+}
