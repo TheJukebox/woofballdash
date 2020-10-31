@@ -25,26 +25,33 @@ function login(username, password, remember){
                 }
                 window.location.replace('index.html');
             } else {
-                loginError();
+                loginError('Error. :(', false);
             }
         })
         .fail(function() {
-            loginError();
+            loginError('Unable to connect to server', false);
         })
 }
 
+function loginError(message, badPassword){
+    $('#incorrect-text').text(message);
+    $('.signin').removeClass('slide-in');
+    $('#incorrect-text').removeClass('no-height');
+    if(badPassword){
+        $('.signin').addClass('shake');
+        $('#username').addClass('is-invalid');
+        $('#password').addClass('is-invalid');
+
+        setTimeout(
+            function(){$('.signin').removeClass('shake');
+        }, 1000);
+    }
+}
 
 //delete this when API implemented
 function tempLogin(username, password, remember){
     if (username == 'wrong' || username == ''){
-        $('.signin').removeClass('slide-in');
-        $('.signin').addClass('shake');
-        $('#username').addClass('is-invalid');
-        $('#password').addClass('is-invalid');
-        $('#incorrect-text').removeClass('no-height');
-        setTimeout(
-            function(){$('.signin').removeClass('shake');
-        }, 1000);
+        loginError('bad pass', false);
     } else {
         $('.signin').addClass('slide-out');
         setTimeout(function(){
