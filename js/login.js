@@ -51,7 +51,9 @@ function loginError(message, badPassword){
 //delete this when API implemented
 function tempLogin(username, password, remember){
     if (username == 'wrong' || username == ''){
-        loginError('bad pass', false);
+        loginError('bad pass :(', true);
+    } else if (username == 'error' || username == ''){
+        loginError('Unable to connect to server', false);
     } else {
         $('.signin').addClass('slide-out');
         setTimeout(function(){
