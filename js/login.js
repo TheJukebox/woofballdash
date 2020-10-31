@@ -25,7 +25,7 @@ function login(username, password, remember){
                 }
                 window.location.replace('index.html');
             } else {
-                loginError('Error. :(', false);
+                loginError('Unable to connect to server', false);
             }
         })
         .fail(function() {
