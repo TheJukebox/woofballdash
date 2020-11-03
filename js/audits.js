@@ -1,4 +1,4 @@
-var loginURL = '';
+var auditURL = '';
 var token, login, username;
 
 if ((login = sessionStorage.getItem('loggedin')) == 'true'){
