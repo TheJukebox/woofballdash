@@ -126,18 +126,47 @@ function searchAudits(){
     })
 }
 
-function downloadAllAudits(){
+function viewAllAudits(){
     showJSON(currentAudits);
+
+    let temp = JSON.stringify(currentAudits);
+    temp = [temp];
+    let blob = new Blob(temp, {type: "text/plain;charset=utf-8"});
+    let url = window.URL;
+    download = url.createObjectURL(blob);
+    let a = document.createElement('a');
+    a.id = 'downloadAuditLink';
+    a.download = 'audits.json';
+    a.href = download;
+    a.classList.add('btn', 'btn-outline-primary');
+    $('#audit-toolbar').prepend(a);
+    a.innerText = 'Download JSON'
+
     $('#audit-container').show();
 }
 
-function downloadAudit(index){
+function viewAudit(index){
     showJSON(currentAudits[index]);
+
+    let temp = JSON.stringify(currentAudits[index]);
+    temp = [temp];
+    let blob = new Blob(temp, {type: "text/plain;charset=utf-8"});
+    let url = window.URL;
+    download = url.createObjectURL(blob);
+    let a = document.createElement('a');
+    a.id = 'downloadAuditLink';
+    a.download = 'audit-' + currentAudits[index].auditID + '.json';
+    a.href = download;
+    a.classList.add('btn', 'btn-outline-primary');
+    $('#audit-toolbar').prepend(a);
+    a.innerText = 'Download JSON'
+
     $('#audit-container').show();
 }
 
 function closeAudit(index){
     $('#audit-container').hide();
+    $('#downloadAuditLink').remove();
 }
 
 function showJSON(json){
@@ -174,7 +203,7 @@ function populateAuditTable(audits){
                 <td><a target="_blank" href="https://www.google.com/maps/search/`+ audit.latlng +`/">` + audit.location.locale + `, ` + audit.location.state + `, ` + audit.location.country + `</a></td>
                 <td>`+ audit.date +`</td>
                 <td>`+ audit.score +`</td>
-                <td class="text-right"><button class="btn btn-outline-primary" onclick="downloadAudit(` + i + `);"><img class="buttonIMG" draggable="false" src="icons/feather/list.svg"/></button></td>
+                <td class="text-right"><button class="btn btn-outline-primary" onclick="viewAudit(` + i + `);"><img class="buttonIMG" draggable="false" src="icons/feather/list.svg"/></button></td>
             </tr>`
 
             tableRows.push(tableRow);
