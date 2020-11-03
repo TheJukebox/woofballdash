@@ -253,3 +253,10 @@ function displayAudits(){
         }
     )
 }
+
+$('#auditsearch, #startdate, #enddate, #auditscore, #audittype').keypress(function(event){
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	if(keycode == '13'){
+		$('#search-btn').click();
+	}
+});
