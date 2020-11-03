@@ -7,29 +7,6 @@ if (sessionStorage.getItem('loggedin') == 'true'){
 }
 
 function login(username, password, remember){
-    /*
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    const body = '{"username": "' + username + '","password": "' + password + '"}';
-
-    const init = {
-    method: 'POST',
-    headers,
-    body
-    };
-
-    fetch('https://z5vplyleb9.execute-api.ap-southeast-2.amazonaws.com/release/authUser', init)
-    .then((response) => {
-    return response.json(); // or .text() or .blob() ...
-    })
-    .then((text) => {
-        alert("Yay succ");
-        console.log(text);
-    })
-    .catch((e) => {
-        loginError('Unable to connect to server', false)
-    });*/
     if (username != ''){
         $.ajax
         ({
