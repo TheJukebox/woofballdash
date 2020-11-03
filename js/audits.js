@@ -33,7 +33,6 @@ if ((login = sessionStorage.getItem('loggedin')) == 'true'){
 $('#current-user').text('User: ' + username);
 
 function getAllAudits(){
-    let response;
     $.ajax({
         type: "POST",
         contentType: 'application/json',
@@ -57,7 +56,6 @@ function getAllAudits(){
 }
 
 function searchAudits(){
-    let response;
     let searchOBJ = {};
     let noSearch = true;
 
@@ -107,7 +105,6 @@ function searchAudits(){
             console.log('fail :(')
         },
         success: function(data){
-            console.log(data);
             try{
                 currentAudits = data.body.audits;
             } catch (e){
