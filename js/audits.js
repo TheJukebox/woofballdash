@@ -45,27 +45,118 @@ function getAllAudits(){
             console.log('fail :(')
         },
         success: function(data){
-            allAudits = data.body.auditsFound;
-            currentAudits = data.body.auditsFound;
-            populateAuditTable(allAudits);
+            try{
+                allAudits = data.body.auditsFound;
+                currentAudits = data.body.auditsFound;
+            } catch (e){
+                currentAudits = [];
+            }
+            populateAuditTable(currentAudits);
+        },
+    })
+}
+
+function searchAudits(){
+    let response;
+    let searchOBJ = {};
+    let noSearch = true;
+
+    searchOBJ.token = token;
+
+    if ($('#auditsearch').val() != ''){
+        searchOBJ.locationString = $('#auditsearch').val()
+        noSearch = false;
+    }
+
+    if ($('#startdate').val() != '' && $('#enddate').val() != ''){
+        searchOBJ.date1 = $('#startdate').val();
+        searchOBJ.date2 = $('#enddate').val()
+        noSearch = false;
+    } else if ($('#startdate').val() != ''){
+        searchOBJ.date = $('#startdate').val();
+        noSearch = false;
+    } else if ($('#enddate').val() != ''){
+        searchOBJ.date = $('#enddate').val();
+        noSearch = false;
+    }
+
+    if ($('#auditscore').val() != ''){
+        searchOBJ.score = $('#auditscore').val();
+        noSearch = false;
+    }
+
+    if ($('#audittype').val() != ''){
+        searchOBJ.auditType = $('#audittype').val()
+        noSearch = false;
+    }
+
+    if (noSearch){
+        currentAudits = allAudits;
+        populateAuditTable(currentAudits);
+        return;
+    }
+
+    $.ajax({
+        type: "POST",
+        contentType: 'application/json',
+        url: auditURL,
+        dataType: 'json',
+        async: true,
+        data: JSON.stringify(searchOBJ),
+        fail: function(){
+            console.log('fail :(')
+        },
+        success: function(data){
+            console.log(data);
+            try{
+                currentAudits = data.body.audits;
+            } catch (e){
+                currentAudits = [];
+            }
+            populateAuditTable(currentAudits);
         },
     })
 }
 
 function downloadAllAudits(){
-    var new_page = window.open();
-    new_page.document.write(JSON.stringify(currentAudits));
+    showJSON(currentAudits);
+    $('#audit-container').show();
 }
 
 function downloadAudit(index){
-    var new_page = window.open();
-    new_page.document.write(JSON.stringify(currentAudits[index]));
+    showJSON(currentAudits[index]);
+    $('#audit-container').show();
+}
+
+function closeAudit(index){
+    $('#audit-container').hide();
+}
+
+function showJSON(json){
+    $('#json-renderer').jsonViewer(json);
+}
+
+function resetAudits(){
+    $('#auditsearch').val('');
+    $('#startdate').val('');
+    $('#enddate').val('');
+    $('#auditscore').val('');
+    $('#audittype').val('');
+    currentAudits = allAudits;
+    populateAuditTable(currentAudits);
 }
 
 function populateAuditTable(audits){
     let tableRows = [];
-    console.log(audits);
-    $('#resultNo').text(audits.length + ' audits');
+    if (audits.length == 0){
+        $('#resultNo').text(audits.length + ' audits');
+        $('#audit-list').html('');
+        return;
+    } else if (audits.length == 1){
+        $('#resultNo').text(audits.length + ' audit');
+    } else {
+        $('#resultNo').text(audits.length + ' audits');
+    }
     audits.forEach(
         (audit, i) => {
             let index = i + 1;

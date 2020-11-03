@@ -6,9 +6,23 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="js/jquery-3.5.1.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery.json-viewer.js"></script>
+        <link href="css/jquery.json-viewer.css" type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <div id="audit-container">
+            <div id="audit-card" class="card">
+                <div id="audit-card-body" class="card-body">
+                    <pre id="json-renderer"></pre>
+                    <div style="height: 58px"></div>
+                </div>
+                <div id="audit-toolbar">
+                    <button id="copy-audit-JSON" class="btn btn-outline-primary">Copy JSON</button>
+                    <button class="btn btn-outline-primary" onclick="closeAudit();">Close</button>
+                </div>
+            </div>
+        </div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <span class="navbar-brand noselect">Woof!</span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,60 +54,58 @@
 
         <div class="container main">
             <div class="card">
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
+                <div class="card-body">
 
-                        <div class="form-row">
-                            <div class="form-group col-md-8 noselect">
-                                <label for="auditsearch" class="noselect">Search audits:</label>
-                                <input class="form-control" type="search" id="auditsearch" placeholder="Search">
-                            </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-8 noselect">
+                            <label for="auditsearch" class="noselect">Search audits:</label>
+                            <input class="form-control" type="search" id="auditsearch" placeholder="Search">
                         </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group col-md-4 noselect">
-                                <label for="startdate" class="noselect">Start date:</label>
-                                <input class="form-control" type="date" id="startdate">
-                            </div>
-                            <div class="form-group col-md-4 noselect">
-                                <label for="enddate" class="noselect">End date:</label>
-                                <input class="form-control" type="date" id="enddate">
-                            </div>
-                        </div>
-            
-                        <div class="form-row">
-                            <div class="form-group col-md-4 noselect">
-                                <label for="auditscore" class="noselect">Score:</label>
-                                <select id="auditscore" class="form-control">
-                                    <option selected>Select a score</option>
-                                    <option>A</option>
-                                    <option>B</option>
-                                    <option>C</option>
-                                    <option>D</option>
-                                    <option>E</option>
-                                    <option>F</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-4 noselect">
-                                <label for="audittype" class="noselect">Type:</label>
-                                <select id="audittype" class="form-control">
-                                    <option selected>Select a type</option>
-                                    <option>Segment</option>
-                                    <option>Intersection</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-8 noselect">
-                                <button class="btn btn-outline-success" type="submit">Search</button> 
-                                <button class="btn btn-outline-danger" type="reset">Reset</button> 
-                            </div>
-                        </div>
-
                     </div>
-                  </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-4 noselect">
+                            <label for="startdate" class="noselect">Start date:</label>
+                            <input class="form-control" type="date" id="startdate">
+                        </div>
+                        <div class="form-group col-md-4 noselect">
+                            <label for="enddate" class="noselect">End date:</label>
+                            <input class="form-control" type="date" id="enddate">
+                        </div>
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="form-group col-md-4 noselect">
+                            <label for="auditscore" class="noselect">Score:</label>
+                            <select id="auditscore" class="form-control">
+                                <option value="" selected>Select a score</option>
+                                <option>A</option>
+                                <option>B</option>
+                                <option>C</option>
+                                <option>D</option>
+                                <option>E</option>
+                                <option>F</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-4 noselect">
+                            <label for="audittype" class="noselect">Type:</label>
+                            <select id="audittype" class="form-control">
+                                <option value="" selected>Select a type</option>
+                                <option>Segment</option>
+                                <option>Intersection</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-8 noselect">
+                            <button class="btn btn-outline-success" onclick="searchAudits();">Search</button> 
+                            <button class="btn btn-outline-danger" onclick="resetAudits();">Reset</button> 
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
         
@@ -101,7 +113,7 @@
             <div id="tablecard" class="card">
                 <div class="card-body">
                     <p id="resultNo" class="float-left noselect">0 results</p>
-                    <button class="btn btn-outline-primary float-right" onclick="downloadAllAudits();">Download all</button>
+                    <button class="btn btn-outline-primary float-right" onclick="downloadAllAudits();">View all</button>
                     <table id="audit-table" class="table" style="margin-bottom: 0;">
                         <thead>
                         <tr>
