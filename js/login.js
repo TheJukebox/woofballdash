@@ -8,8 +8,7 @@ if (sessionStorage.getItem('loggedin') == 'true'){
 
 function login(username, password, remember){
     if (username != ''){
-        $.ajax
-        ({
+        $.ajax({
             type: "POST",
             contentType: 'application/json',
             url: loginURL,

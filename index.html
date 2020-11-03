@@ -100,8 +100,8 @@
         <div id="tablecontainer" class="container main">
             <div id="tablecard" class="card">
                 <div class="card-body">
-                    <p id="resultNo" class="float-left noselect">123 results</p>
-                    <button class="btn btn-outline-primary float-right" type="submit">Download all</button>
+                    <p id="resultNo" class="float-left noselect">0 results</p>
+                    <button class="btn btn-outline-primary float-right" onclick="downloadAllAudits();">Download all</button>
                     <table id="audit-table" class="table" style="margin-bottom: 0;">
                         <thead>
                         <tr>
@@ -113,28 +113,14 @@
                             <th scope="col"></th>
                         </tr>
                         </thead>
-                        <tbody id="audit-list">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td><a href="https://maps.google.com">-34.4194727, 150.8856105</a></td>
-                            <td>3:12:11 11/12/20</td>
-                            <td>C</td>
-                            <td class="text-right"><button class="btn btn-outline-primary" type="submit"><img class="buttonIMG" draggable="false" src="icons/feather/list.svg"/></button><button class="btn btn-outline-primary" type="submit"><img class="buttonIMG" draggable="false" src="icons/feather/download.svg"/></button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td><a href="https://maps.google.com">-34.4194727, 150.8856105</a></td>
-                            <td>3:12:11 11/12/20</td>
-                            <td>D</td>
-                            <td class="text-right"><button class="btn btn-outline-primary" type="submit"><img class="buttonIMG" draggable="false" src="icons/feather/list.svg"/></button><button class="btn btn-outline-primary" type="submit"><img class="buttonIMG" draggable="false" src="icons/feather/download.svg"/></button></td>
-                        </tr>
-                        </tbody>
+                        <tbody id="audit-list"></tbody>
                     </table>
                 </div>
             </div>
         </div>
         <script src="js/audits.js"></script>
+        <script>
+            getAllAudits();
+        </script>
     </body>
 </html>
