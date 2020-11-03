@@ -44,6 +44,12 @@ function getAllAudits(){
             console.log('fail :(')
         },
         success: function(data){
+            console.log(data);
+            if (data.statusCode == 401){
+                if (data.error == 'Invalid token'){
+                    logout();
+                }
+            }
             try{
                 allAudits = data.body.auditsFound;
                 currentAudits = data.body.auditsFound;
@@ -105,6 +111,11 @@ function searchAudits(){
             console.log('fail :(')
         },
         success: function(data){
+            if (data.statusCode == 401){
+                if (data.error == 'Invalid token'){
+                    logout();
+                }
+            }
             try{
                 currentAudits = data.body.audits;
             } catch (e){
