@@ -68,29 +68,29 @@ function searchAudits(){
     searchOBJ.token = token;
 
     if ($('#auditsearch').val() != ''){
-        searchOBJ.locationString = $('#auditsearch').val()
+        searchOBJ.criteria.locationString = $('#auditsearch').val()
         noSearch = false;
     }
 
     if ($('#startdate').val() != '' && $('#enddate').val() != ''){
-        searchOBJ.date1 = $('#startdate').val();
-        searchOBJ.date2 = $('#enddate').val()
+        searchOBJ.criteria.date1 = $('#startdate').val();
+        searchOBJ.criteria.date2 = $('#enddate').val()
         noSearch = false;
     } else if ($('#startdate').val() != ''){
-        searchOBJ.date = $('#startdate').val();
+        searchOBJ.criteria.date = $('#startdate').val();
         noSearch = false;
     } else if ($('#enddate').val() != ''){
-        searchOBJ.date = $('#enddate').val();
+        searchOBJ.criteria.date = $('#enddate').val();
         noSearch = false;
     }
 
     if ($('#auditscore').val() != ''){
-        searchOBJ.score = $('#auditscore').val();
+        searchOBJ.criteria.score = $('#auditscore').val();
         noSearch = false;
     }
 
     if ($('#audittype').val() != ''){
-        searchOBJ.auditType = $('#audittype').val()
+        searchOBJ.criteria.auditType = $('#audittype').val()
         noSearch = false;
     }
 
