@@ -9,31 +9,34 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <span class="navbar-brand noselect">Woof!</span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <span class="navbar-brand noselect">Woof!</span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
       
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="javascript:;" onclick="clickyFade('index.html')">Audits</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="javascript:;" onclick="clickyFade('questions.html')">Questions</a>
-            </li>
-            
-          </ul>
-          <ul class="navbar-nav">
-          <li class="nav-item float-right">
-            <a class="nav-link" href="#" onclick="logout();">Logout</a>
-         </li>
-         </ul>
-        </div>
-    </nav>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:;" onclick="clickyFade('index.html')">Audits</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="javascript:;" onclick="clickyFade('questions.html')">Questions</a>
+                    </li>
 
-      <br class="navBR noselect">
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item float-right">
+                        <span id="current-user" class="navbar-text"></span>
+                    </li>
+                    <li class="nav-item float-right">
+                        <a class="nav-link" href="javascript:;" onclick="logout();">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <br class="navBR noselect">
 
         <div class="container main">
             <div class="card">

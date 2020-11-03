@@ -1,5 +1,4 @@
 let loginURL = 'https://z5vplyleb9.execute-api.ap-southeast-2.amazonaws.com/release/authUser';
-let token = '';
 
 if (sessionStorage.getItem('loggedin') == 'true'){
     window.location.replace('index.html');
@@ -8,29 +7,66 @@ if (sessionStorage.getItem('loggedin') == 'true'){
 }
 
 function login(username, password, remember){
-    $.post(loginURL, {'username': username, 'password': password})
-        .done(function(data) {
-            if(data.success){
-                //uses localstorage to remember the login, sessionstorage if not
-                if (remember){
-                    localStorage.setItem('loggedin', true);
-                    localStorage.setItem('first-login', true);
-                    localStorage.setItem('username', username);
-                    localStorage.setItem('token', 'token');
+    /*
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const body = '{"username": "' + username + '","password": "' + password + '"}';
+
+    const init = {
+    method: 'POST',
+    headers,
+    body
+    };
+
+    fetch('https://z5vplyleb9.execute-api.ap-southeast-2.amazonaws.com/release/authUser', init)
+    .then((response) => {
+    return response.json(); // or .text() or .blob() ...
+    })
+    .then((text) => {
+        alert("Yay succ");
+        console.log(text);
+    })
+    .catch((e) => {
+        loginError('Unable to connect to server', false)
+    });*/
+    if (username != ''){
+        $.ajax
+        ({
+            type: "POST",
+            contentType: 'application/json',
+            url: loginURL,
+            dataType: 'json',
+            async: true,
+            data: JSON.stringify({'username': username, 'password' : password}),
+            fail: function(){
+                loginError('Unable to connect to server.', false)
+            },
+            success: function(data){
+                if (data.statusCode == 200){
+                    $('.signin').addClass('slide-out');
+                    setTimeout(function(){
+                        if (remember){
+                            localStorage.setItem('loggedin', true);
+                            localStorage.setItem('username', username);
+                            localStorage.setItem('first-login', true);
+                            localStorage.setItem('token', data.body.token);
+                        } else {
+                            sessionStorage.setItem('loggedin', true);
+                            sessionStorage.setItem('username', username);
+                            sessionStorage.setItem('first-login', true);
+                            sessionStorage.setItem('token', data.body.token);
+                        }
+                        window.location.replace('index.html');
+                    }, 2000);
+                } else if (data.statusCode == 401) {
+                    loginError('Incorrect username or password.', true);
                 } else {
-                    sessionStorage.setItem('loggedin', true);
-                    sessionStorage.setItem('first-login', true);
-                    sessionStorage.setItem('username', username);
-                    sessionStorage.setItem('token', 'token');
+                    loginError('Unable to connect to server.', false)
                 }
-                window.location.replace('index.html');
-            } else {
-                loginError('Unable to connect to server', false);
-            }
+            },
         })
-        .fail(function() {
-            loginError('Unable to connect to server', false);
-        })
+    }
 }
 
 function loginError(message, badPassword){
@@ -45,31 +81,6 @@ function loginError(message, badPassword){
         setTimeout(
             function(){$('.signin').removeClass('shake');
         }, 1000);
-    }
-}
-
-//delete this when API implemented
-function tempLogin(username, password, remember){
-    if (username == 'wrong' || username == ''){
-        loginError('bad pass :(', true);
-    } else if (username == 'error' || username == ''){
-        loginError('Unable to connect to server', false);
-    } else {
-        $('.signin').addClass('slide-out');
-        setTimeout(function(){
-            if (remember){
-                localStorage.setItem('loggedin', true);
-                localStorage.setItem('username', username);
-                localStorage.setItem('first-login', true);
-                localStorage.setItem('token', 'token');
-            } else {
-                sessionStorage.setItem('loggedin', true);
-                sessionStorage.setItem('username', username);
-                sessionStorage.setItem('first-login', true);
-                sessionStorage.setItem('token', 'token');
-            }
-            window.location.replace('index.html');
-        }, 2000);
     }
 }
 

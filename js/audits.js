@@ -29,6 +29,8 @@ if ((login = sessionStorage.getItem('loggedin')) == 'true'){
     logouterer();
 }
 
+$('#current-user').text('User: ' + username);
+
 function clickyFade(url){
     $('.container').addClass('fadeout');
     setTimeout(function(){
