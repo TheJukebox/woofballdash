@@ -63,6 +63,7 @@ function getAllAudits(){
 
 function searchAudits(){
     let searchOBJ = {};
+    searchOBJ.criteria = {};
     let noSearch = true;
 
     searchOBJ.token = token;
